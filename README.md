@@ -32,18 +32,43 @@
 
 __1. A Way to Select Your Workout__
  
+_What?_
 
+A drop down menu that you allows to go through the process of making a selection of your workout (versus an entry).
+
+[!wkoutSelect](/Assets/wkoutSelect.png)
+
+_How?_
+
+[!wkoutSelect](/Assets/wkoutSelectCode.png)
 
 __2. A Database for storing your workouts__
 
+_What?_
 
+_How?_
+
+[!gettheDB](/Assets/server.js/png)
 
 __3. A Way to View Your workouts__
 
+_What?_
+Charts.js
 
 
+[!Charts](/Assets/ChartsDisplay.png)
 
+_How?_
 
+[!DonutChart](/Assets/DonutChartCode.png)
+
+__4. A Heroku deployed site__
+
+_What?_
+
+In order to deploy our code we must use a service like heroku, that allows for server side and front end code. Heroku is great because it offers a free service that allows you to use databases in the back end, a thing not offered by github pages. In order to use MongoDB with heroku a set of special steps must be followed (that are different from using either mysql or no database).
+
+_How?_
   
 
 ## Usage
