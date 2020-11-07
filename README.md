@@ -36,11 +36,14 @@ _What?_
 
 A drop down menu that you allows to go through the process of making a selection of your workout (versus an entry).
 
-![wkoutSelect](/Assets/wkoSelect.png)
+![SelectView](/Assets/wkoutSelect.png)
 
 _How?_
 
-![wkoutSelect](/Assets/wkoSelectCode.png)
+![SelectCode](/Assets/wkoSelectHTML.png)
+![SelectCode](/Assets/wkoSelectCode.png)
+
+This is not necessarily code I created, however I do think it is an important feature that could easily trip anyone up. It is important to understand that the html is the pathway that you need to follow to build api calls and the schema. 
 
 __2. A Database for storing your workouts__
 
@@ -50,8 +53,15 @@ In order to store data for referencing throughout the week (a 7 day period), we 
 
 _How?_
 
-We start off our call in the server.js file (which I had to create for this assignment)
-![gettheDB](/Assets/server.js/png)
+We start off our call in the server.js file (which I had to create for this assignment). This code is a combination of what I have used in other assignments and what I was given for instructions in my creating a heroku deployed site (see below). 
+
+![gettheDB](/Assets/server.js.png)
+
+In order to talk to our database we had to build a series of async calls.
+
+![APIRoutes](/Assets/API-Backend.png)
+
+Though these calls were built for the front end and the backend I chose to feature part of the ones on the back end, our main routes that talk to the MONGO DB. This was a fairly difficult part of the assignment as I tend to overthing how they work. It should fairly simple, they follow the CRUD (Create, Read, Update, Delete) -where we post and get (create), get (read), put (update) and delete. With mongoose we are finding things and then altering them rather then just grabbing them and altering them. This also follows a slightly different way of requesting and responding. Inserting curly brackets and the phrase body in place of req in certain circumstances. Also, we are using a router instead of app.
 
 __3. A Way to View Your workouts__
 
@@ -64,6 +74,7 @@ _What?_
 _How?_
 
 Below is an example of the donut chart code- it's pretty easy to take the examples from the [documentation](https://www.chartjs.org/docs/latest/charts/doughnut.html) and build a clean beautiful chart. Although this data was provided for me in this assignment, I felt it was an important and interesting feature worth discussion.
+
 ![DonutChart](/Assets/DonutChartCode.png)
 
 __4. A Heroku deployed site__
