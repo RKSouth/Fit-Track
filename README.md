@@ -40,8 +40,8 @@ A drop down menu that you allows to go through the process of making a selection
 
 _How?_
 
-![SelectCode](/Assets/wkoSelectHTML.png)
-![SelectCode](/Assets/wkoSelectCode.png)
+![SelectHTML](/Assets/wkoSelectCodeHTML.png)
+![SelectSCHEMA](/Assets/wkoSelectCode.png)
 
 This is not necessarily code I created, however I do think it is an important feature that could easily trip anyone up. It is important to understand that the html is the pathway that you need to follow to build api calls and the schema. 
 
@@ -73,6 +73,7 @@ _What?_
 
 _How?_
 
+
 Below is an example of the donut chart code- it's pretty easy to take the examples from the [documentation](https://www.chartjs.org/docs/latest/charts/doughnut.html) and build a clean beautiful chart. Although this data was provided for me in this assignment, I felt it was an important and interesting feature worth discussion.
 
 ![DonutChart](/Assets/DonutChartCode.png)
@@ -85,6 +86,52 @@ In order to deploy our code we must use a service like heroku, that allows for s
 
 _How?_
   
+  Basic Steps:
+
+1. Set up a MongoDB Atlas account by going to https://www.mongodb.com/cloud/atlas/signup. Make sure you sign up for a shared (free cluster), that you are using the AWS Provider, that you use a password, set atlas admin as your database privileges and that you allow network access from anywhere.
+2. Create a database by going to clusters, collections and naming your database. Make sure it worked before moving on.
+3. Connect your database to heroku by navigating to the heroku settings section on your newly created (by "heroku create" in your vs code terminal of the code you want to create ) app-by adding config settings.
+4. To add config settings, type in MONGODB_URI in they key of your config settings and getting your connection string with your username/password/database from your cluster in the connection settings. 
+5. Then insert this code: 'mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/deep-thoughts',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
+' 
+into the place where you call those sorts things, also known as the server.js
+
+__5. The Virtual Database seed Issue__
+
+_What?_
+
+This assignment had something unique that I really hadn't seen before - a seed file. In order to better understand this type of file I read this [blog](https://medium.com/@shannen.ye/setting-up-a-database-and-seed-file-7e73fe2a9fe6) about it. Also the [github](https://www.npmjs.com/package/seed-js) page does a great job describing it. It's very similar to the seed files used in mysql, used to help us begin using our database and test it out, however it seems to be it's on kind of js, downloaded from npm. 
+
+_How?_
+
+When trying to do npm seed (as described in the blog) I ran into some issues. However, I was able to solve my problem by using a virtual environment. It allows us to concatenate our results into a complete description of the duration without too much trouble.
+
+[Documentation](https://mongoosejs.com/docs/tutorials/virtuals.html)
+
+Code: 
+
+{
+  toJSON:{
+    virtuals: true
+  }
+}
+);
+
+exerciseSchema.virtual("totalDuration").get(function(){
+  return this.exercises.reduce((total,exercise)=>{
+    return total + exercise.duration
+  }, 0)
+})
+
+
 
 ## Usage
 ### How do you use this project? This is meant for anyone looking for a more structured approach to exercise and working out. If you are looking to keep an easy to manage website 
