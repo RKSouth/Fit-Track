@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const exercise = require("../models/exercise.js");
+const Exercise = require("../models/exercise.js");
 
-router.post("/api/exercise", ({ body }, res) => {
-  exercise.create(body)
+router.post("/api/workouts", (req, res) => {
+  Exercise.create({})
     .then(dbexercise => {
       res.json(dbexercise);
     })
@@ -11,8 +11,34 @@ router.post("/api/exercise", ({ body }, res) => {
     });
 });
 
-router.post("/api/exercise/bulk", ({ body }, res) => {
-  exercise.insertMany(body)
+
+router.get("/api/workouts", (req, res) => {
+  Exercise.find()
+    .then(dbexercise => {
+      res.json(dbexercise);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+//update
+router.put("/api/workouts/:id", ({body,params},res) =>
+{
+  Exercise.findByIdAndUpdate(
+    params.id, 
+    {$push:{exercises:body}},
+    {new:true,runValidators:true}
+  ) .then(dbexercise => {
+    res.json(dbexercise);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  });
+})
+
+
+router.get("/api/workouts/range", (req, res) => {
+  Exercise.find().limit(7)
     .then(dbexercise => {
       res.json(dbexercise);
     })
@@ -21,15 +47,15 @@ router.post("/api/exercise/bulk", ({ body }, res) => {
     });
 });
 
-router.get("/api/exercise", (req, res) => {
-  exercise.find({})
-    .sort({ date: -1 })
-    .then(dbexercise => {
-      res.json(dbexercise);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
+router.delete("/api/workouts", ({body}, res) =>{
+  Exercise.findByIdAndDelete(
+    body.id
+  ).then(() => {
+    res.json(true);
+  })
+  .catch(err => {
+    res.status(400).json(err);
+  });
+})
 
 module.exports = router;
