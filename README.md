@@ -1,5 +1,5 @@
 # Fit Track (Fitness Tracker)
-[!Fit-Tracker](/Assets/FinishedProduct.png)
+![Fit-Tracker](/Assets/FinishedProduct.png)
 
 ### A simple app to track the name, type, weight, sets, reps, and duration of exercise log multiple exercises in a workout on a given day.
 
@@ -36,11 +36,11 @@ _What?_
 
 A drop down menu that you allows to go through the process of making a selection of your workout (versus an entry).
 
-[!wkoutSelect](/Assets/wkoutSelect.png)
+![wkoutSelect](/Assets/wkoutSelect.png)
 
 _How?_
 
-[!wkoutSelect](/Assets/wkoutSelectCode.png)
+![wkoutSelect](/Assets/wkoutSelectCode.png)
 
 __2. A Database for storing your workouts__
 
@@ -48,7 +48,7 @@ _What?_
 
 _How?_
 
-[!gettheDB](/Assets/server.js/png)
+![gettheDB](/Assets/server.js/png)
 
 __3. A Way to View Your workouts__
 
@@ -56,11 +56,11 @@ _What?_
 Charts.js
 
 
-[!Charts](/Assets/ChartsDisplay.png)
+![Charts](/Assets/ChartsDisplay.png)
 
 _How?_
 
-[!DonutChart](/Assets/DonutChartCode.png)
+![DonutChart](/Assets/DonutChartCode.png)
 
 __4. A Heroku deployed site__
 
