@@ -131,7 +131,12 @@ exerciseSchema.virtual("totalDuration").get(function(){
   }, 0)
 })
 
+__6. For Future Development__
 
+* Make the colors more fun, this project started with relatively complex but plain looking imagery, it needs, in my opinion to be energetic and inspire people to exercise
+* While making this app, I had hard understanding what I was making and what I was doing, therefore I think it would be a good idea to create about section that describes how to use this application
+* It may be a huge undertaking and never really happen but it would be cool to take data used for the workouts and create a nutrition part that does this same thing
+* It might be fun to have this be a more social tool - have a user log in and log out would add a degree of complexity to every bit of code but it would be cool to be able to share your workouts with your friends
 
 ## Usage
 ### How do you use this project? This is meant for anyone looking for a more structured approach to exercise and working out. If you are looking to keep an easy to manage website 
