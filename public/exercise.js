@@ -14,9 +14,10 @@ const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout")
 
+// start out with nothing
 let workoutType = null;
 let shouldNavigateAway = false;
-
+//look for the workouts, getting started
 async function initExercise() {
   let workout;
 
@@ -29,9 +30,12 @@ async function initExercise() {
   }
 
 }
-
+// calling the start workout (init) function
 initExercise();
 
+
+// once the workout type is selected remove none from selected work and add none
+// unselected workout
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
@@ -94,7 +98,7 @@ function validateInputs() {
     addButton.setAttribute("disabled", true);
   }
 }
-
+// once the entire form is filled out and submitted add the form inputs to numbers
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -114,18 +118,19 @@ async function handleFormSubmit(event) {
     workoutData.duration = Number(resistanceDurationInput.value.trim());
   }
 
+  //add the workout data and clear the inputs - we are done
   await API.addExercise(workoutData);
   clearInputs();
   toast.classList.add("success");
 }
-
+// end of the toast return to home
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
     location.href = "/";
   }
 }
-
+// called in the submit function, clear each of these inputs
 function clearInputs() {
   cardioNameInput.value = "";
   nameInput.value = "";
@@ -137,20 +142,24 @@ function clearInputs() {
   weightInput.value = "";
 }
 
+// listen for workout type change
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
+// when we are done listen, leave and take all that submitted data with you
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
     shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
+// listen to add button when it's clicked and submit
 if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
+// animate the toast
 toast.addEventListener("animationend", handleToastAnimationEnd);
-
+// for each document element that is inputted validate them and check them.
 document
   .querySelectorAll("input")
   .forEach(element => element.addEventListener("input", validateInputs));
