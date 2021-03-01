@@ -10,7 +10,7 @@ fetch("/api/workouts/range")
 
 
 API.getWorkoutsInRange()
-
+// all the colors for the graphs
   function generatePalette() {
     const arr = [
     "#003f5c",
@@ -33,17 +33,19 @@ API.getWorkoutsInRange()
 
   return arr;
   }
+  // put the data in the charts
 function populateChart(data) {
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
   let workouts = workoutNames(data);
   const colors = generatePalette();
-
+// these are the types of graphs we are using, we need to get them
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
   let pie2 = document.querySelector("#canvas4").getContext("2d");
 
+//creating the object for line chart, will be displaying days of week and workout duration 
   let lineChart = new Chart(line, {
     type: "line",
     data: {
@@ -91,7 +93,7 @@ function populateChart(data) {
       }
     }
   });
-
+//creating the object for the bar chart, will be displaying pounds lifted
   let barChart = new Chart(bar, {
     type: "bar",
     data: {
@@ -144,7 +146,7 @@ function populateChart(data) {
       }
     }
   });
-
+// creating the object of pieChart detailing the types of exercise performed
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
@@ -164,7 +166,7 @@ function populateChart(data) {
       }
     }
   });
-
+// creating the object for donut chart (or pie2) that displays exercises performed
   let donutChart = new Chart(pie2, {
     type: "doughnut",
     data: {
@@ -185,7 +187,7 @@ function populateChart(data) {
     }
   });
 }
-
+// build an array of each duration for every workout's exercise and return the array for the graph
 function duration(data) {
   let durations = [];
 
@@ -197,7 +199,7 @@ function duration(data) {
 
   return durations;
 }
-
+// for weight lifting build an array of the total weight lifted
 function calculateTotalWeight(data) {
   let total = [];
 
@@ -209,7 +211,7 @@ function calculateTotalWeight(data) {
 
   return total;
 }
-
+// build an array of every exercise performed
 function workoutNames(data) {
   let workouts = [];
 
